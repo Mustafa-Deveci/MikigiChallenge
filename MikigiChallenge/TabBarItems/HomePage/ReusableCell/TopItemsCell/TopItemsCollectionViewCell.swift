@@ -19,7 +19,7 @@ class TopItemsCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         formatLabel()
-        configureStraightLine()
+      //  configureStraightLine()
         
     }
     
@@ -33,17 +33,17 @@ class TopItemsCollectionViewCell: UICollectionViewCell {
             homePageTitle.attributedText = attributedText
         }
     
-    func configureStraightLine() {
-        straightLine.backgroundColor = UIColor.lightGray
-           straightLine.translatesAutoresizingMaskIntoConstraints = false
-           contentView.addSubview(straightLine)
-        
-           NSLayoutConstraint.activate([
-               straightLine.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-               straightLine.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-               straightLine.heightAnchor.constraint(equalToConstant: 2)
-           ])
-    }
+//    func configureStraightLine() {
+//        straightLine.backgroundColor = UIColor.lightGray
+//           straightLine.translatesAutoresizingMaskIntoConstraints = false
+//           contentView.addSubview(straightLine)
+//
+//           NSLayoutConstraint.activate([
+//               straightLine.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+//               straightLine.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+//               straightLine.heightAnchor.constraint(equalToConstant: 2)
+//           ])
+//    }
     
 
 }

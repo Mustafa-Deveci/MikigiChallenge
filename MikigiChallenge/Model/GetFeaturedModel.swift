@@ -14,7 +14,7 @@ struct GetFeaturedModel: Codable {
 
 // MARK: - Featured
 struct Featured: Codable {
-    let id, city, country, imageURL: String
+    let id, city, country, imageURL: String?
 
     enum CodingKeys: String, CodingKey {
         case id, city, country

@@ -13,6 +13,10 @@ public enum featuredInsideIdentifier {
 
 class FeaturedInsideCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var featuredImageView: UIImageView!
+    @IBOutlet weak var featuredCityLabel: UILabel!
+    @IBOutlet weak var featuredCountryLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

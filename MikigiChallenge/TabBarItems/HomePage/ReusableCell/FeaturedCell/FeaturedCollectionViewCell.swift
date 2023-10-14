@@ -6,6 +6,14 @@
 //
 
 import UIKit
+import SDWebImage
+
+public struct FeaturedCardArguments {
+    let featuredImageView: String?
+    let featuredCityLabel: String?
+    let featuredId: String?
+    let featuredCountryLabel: String?
+}
 
 public enum featuredIdentifier {
     static let featuredIdentifier = "FeaturedCollectionViewCell"
@@ -15,7 +23,8 @@ class FeaturedCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var homeSubtitle: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    private var featuredCardModel: [FeaturedCardArguments] = []
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setCollectionOwner()
@@ -30,17 +39,29 @@ class FeaturedCollectionViewCell: UICollectionViewCell {
     private func setRegister() {
         collectionView.register(UINib(nibName: featuredInsideIdentifier.featuredInsideIdentifier, bundle: nil), forCellWithReuseIdentifier: featuredInsideIdentifier.featuredInsideIdentifier)
     }
+    private func reloadCollection() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    public func updateUICircleCard(with model: [FeaturedCardArguments]) {
+        self.featuredCardModel = model
+        reloadCollection()
+    }
 
 }
 
 // MARK: - UICollectionViewDataSource
 extension FeaturedCollectionViewCell: UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return featuredCardModel.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: featuredInsideIdentifier.featuredInsideIdentifier, for: indexPath) as! FeaturedInsideCollectionViewCell
+        let featuredCardModel = featuredCardModel[indexPath.item]
+        cell.featuredImageView.setImage(with: featuredCardModel.featuredImageView)
+        cell.featuredCityLabel.text = featuredCardModel.featuredCityLabel
+        cell.featuredCountryLabel.text = featuredCardModel.featuredCountryLabel
         return cell
     }
 }
@@ -70,3 +91,11 @@ extension FeaturedCollectionViewCell: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension UIImageView {
+    func setImage(with urlString: String?) {
+        guard let urlString = urlString else { return }
+        let url = URL(string: urlString)
+        self.sd_setImage(with: url)
+        self.sd_imageTransition = .fade
+    }
+}

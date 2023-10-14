@@ -25,7 +25,10 @@ class HomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.requestData()
+        viewModel.getFeaturedData()
         self.reloadCollection()
+        
 
     }
     
@@ -74,6 +77,7 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: featuredIdentifier.featuredIdentifier, for: indexPath) as? FeaturedCollectionViewCell else { return .init() }
+            cell.updateUICircleCard(with: viewModel.featuredArguments)
             return cell
         default:
             return .init()
