@@ -11,12 +11,12 @@ import Alamofire
 enum ApiRouter: URLRequestConvertible {
     
     case getFeatured
-    case getTimeline(id: Int)
+    case getTimeline(page: Int)
 
     func asURLRequest() throws -> URLRequest {
         let base = try NetworkConstant.baseUrl.asURL()
         let urlAppend = base.appendingPathComponent(path).absoluteString.removingPercentEncoding ?? ""
-
+        
         var urlRequest = URLRequest(url: URL(string: urlAppend)!)
         
         //Http method
@@ -30,8 +30,12 @@ enum ApiRouter: URLRequestConvertible {
                 return JSONEncoding.default
             }
         }()
-
-        return try encoding.encode(urlRequest, with: parameters)
+        
+        if let parameters = parameters {
+            urlRequest = try encoding.encode(urlRequest, with: parameters)
+        }
+        
+        return urlRequest
     }
 
     
@@ -51,7 +55,6 @@ enum ApiRouter: URLRequestConvertible {
             return "/featured"
         case .getTimeline:
             return "/timeline"
-    
         }
     }
     
@@ -60,8 +63,10 @@ enum ApiRouter: URLRequestConvertible {
         switch self {
         case .getFeatured:
             return nil
-        case .getTimeline(let id):
-            return [NetworkConstant.Parameters.id : id]
+        case .getTimeline(let page):
+            return ["page": page]  // "page" sorgu parametresini ekledik
+        default:
+            return nil
         }
     }
 }

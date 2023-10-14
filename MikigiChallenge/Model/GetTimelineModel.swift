@@ -7,17 +7,21 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - GetTimelineModel
 struct GetTimelineModel: Codable {
     let timeline: [Timeline]
+    
+    enum CodingKeys: String, CodingKey {
+           case timeline = "timeline" // JSON anahtarı ile model anahtarını eşleştirin
+       }
 }
 
 // MARK: - Timeline
 struct Timeline: Codable {
-    let id, imageURL: String
+    let id, imageURL: String?
     let mentions: [Mention]
-    let date, title: String
-    let countryCount: Int
+    let date, title: String?
+    let countryCount: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -28,6 +32,6 @@ struct Timeline: Codable {
 
 // MARK: - Mention
 struct Mention: Codable {
-    let id, profileImage, fullname, userName: String
-    let isFollowing: Bool
+    let id, profileImage, fullname, userName: String?
+    let isFollowing: Bool?
 }

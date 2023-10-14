@@ -16,7 +16,7 @@ struct NetworkConstant {
    
     //The parameters
     struct Parameters {
-        static let id = "id"
+        static let userId = "userId"
     }
     
     //The content type (JSON)

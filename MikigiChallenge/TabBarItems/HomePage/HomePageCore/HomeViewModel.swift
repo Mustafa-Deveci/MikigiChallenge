@@ -12,17 +12,21 @@ import UIKit
 
 protocol HomeViewModelInterface: AnyObject {
     static func getFeatured() -> Observable<GetFeaturedModel>
-    //static func getTimelineModel() -> Observable<GetTimelineModel>
+    static func getTimeline(page: Int) -> Observable<GetTimelineModel>
     //func viewDidLoad()
-    func requestData()
+    func FeaturedRequestData()
+    func TimelineRequestData(page: Int)
     func getFeaturedData()
+    func getTimelineData()
     func numberOfItemsInSection(section: Int) -> Int
     func sizeForItemAt(index: IndexPath, collection: UICollectionView) -> CGSize
     
     var homepageFeaturedList: PublishSubject<GetFeaturedModel> { get set }
+    var homepageTimelineList: PublishSubject<GetTimelineModel> { get set }
     var featuredModel: [Featured] { get set }
     var featuredArguments: [FeaturedCardArguments] { get set }
-   // var timelineArguments: [timelineCellArguments] { get set }
+    var timelineModel: [Timeline] { get set }
+    var timelineArguments: [TimelineCardArguments] { get set }
     var numberOfSections: Int { get }
 }
 
@@ -31,8 +35,13 @@ final class HomeViewModel {
     private var disposeBag = DisposeBag()
     
     public var homepageFeaturedList: PublishSubject<GetFeaturedModel> = PublishSubject()
+    
     public var featuredModel: [Featured] = []
     public var featuredArguments: [FeaturedCardArguments] = []
+    
+    public var homepageTimelineList: PublishSubject<GetTimelineModel> = PublishSubject()
+    public var timelineModel: [Timeline] = []
+    public var timelineArguments: [TimelineCardArguments] = []
     
     public init(view: HomeVCInterface = HomeViewController()) {
         self.view = view
@@ -41,13 +50,15 @@ final class HomeViewModel {
 // MARK: - HomeViewModelInterface
 extension HomeViewModel: HomeViewModelInterface {
     var numberOfSections: Int {
-        return 2
+        return 3
     }
     func numberOfItemsInSection(section: Int) -> Int {
         switch section {
         case 0:
             return 1
         case 1:
+            return 1
+        case 2:
             return 1
         default:
             return 1
@@ -59,6 +70,8 @@ extension HomeViewModel: HomeViewModelInterface {
             return .init(width: collection.frame.width, height: 80)
         case 1:
             return .init(width: collection.frame.width, height: 350)
+        case 2:
+            return .init(width: collection.frame.width, height: 300)
         default:
             return .init()
         }
@@ -66,7 +79,10 @@ extension HomeViewModel: HomeViewModelInterface {
     static func getFeatured() -> Observable<GetFeaturedModel> {
         return ApiClient.request(ApiRouter.getFeatured)
     }
-    func requestData() {
+    static func getTimeline(page: Int) -> Observable<GetTimelineModel> {
+        return ApiClient.request(ApiRouter.getTimeline(page: page))
+    }
+    func FeaturedRequestData() {
         HomeViewModel.getFeatured()
             .observe(on: MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] results in
@@ -78,6 +94,28 @@ extension HomeViewModel: HomeViewModelInterface {
             })
             .disposed(by: disposeBag)
     }
+    func TimelineRequestData(page: Int) {
+        HomeViewModel.getTimeline(page: page)
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { results in
+                self.homepageTimelineList.onNext(results)
+                print("List of posts:", results)
+            }, onError: { error in
+                switch error {
+                case ApiError.conflict:
+                    print("Conflict error")
+                case ApiError.forbidden:
+                    print("Forbidden error")
+                case ApiError.notFound:
+                    print("Not found error")
+                default:
+                    print("List of posts:", error)
+                 print("Unknown error:", error.localizedDescription)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func getFeaturedData() {
         self.homepageFeaturedList.observe(on: MainScheduler.asyncInstance).subscribe { [weak self] event in
             guard let self = self else { return }
@@ -98,7 +136,31 @@ extension HomeViewModel: HomeViewModelInterface {
                 self.view?.reloadCollection()
 
             }
-            
+
+        }
+    }
+    func getTimelineData() {
+        self.homepageTimelineList.observe(on: MainScheduler.asyncInstance).subscribe { [weak self] event in
+            guard let self = self else { return }
+            if let response = event.element {
+                self.timelineModel = response.timeline
+                self.timelineArguments.removeAll()
+                for timelineContent in self.timelineModel {
+                    guard let timelineContentId = timelineContent.id,
+                          let timelineImageUrl = timelineContent.imageURL,
+                          let timelineTitle = timelineContent.title,
+                          let timelineCountryCount = timelineContent.countryCount,
+                          let timelineDate = timelineContent.date
+                    else { return }
+                    let arguments = TimelineCardArguments(timelineId: timelineContentId, timelineImageView: timelineImageUrl, timelineTitle: timelineTitle, timelineCountryCount: timelineCountryCount, timelineDate: timelineDate)
+                    timelineArguments.append(arguments)
+
+                }
+                self.timelineArguments = timelineArguments
+                self.view?.reloadCollection()
+
+            }
+
         }
     }
 }

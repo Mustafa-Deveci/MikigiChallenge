@@ -19,16 +19,18 @@ protocol HomeVCInterface: AnyObject {
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var collectionView: UICollectionView!
     private lazy var viewModel: HomeViewModelInterface = HomeViewModel(view: self)
     let disposeBag = DisposeBag()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.requestData()
+        viewModel.FeaturedRequestData()
+        viewModel.TimelineRequestData(page: 1)
         viewModel.getFeaturedData()
-        self.reloadCollection()
-        
+        viewModel.getTimelineData()
+        self.reloadCollection()        
 
     }
     
@@ -58,6 +60,7 @@ extension HomeViewController: HomeVCInterface {
         // Reusable cell
         collectionView.register(UINib(nibName: topItemsCollectionIdentifier.topItems, bundle: nil), forCellWithReuseIdentifier: topItemsCollectionIdentifier.topItems)
         collectionView.register(UINib(nibName: featuredIdentifier.featuredIdentifier, bundle: nil), forCellWithReuseIdentifier: featuredIdentifier.featuredIdentifier)
+        collectionView.register(UINib(nibName: timelineIdentifier.timelineIdentifier, bundle: nil), forCellWithReuseIdentifier: timelineIdentifier.timelineIdentifier)
        
     }
 
@@ -78,6 +81,10 @@ extension HomeViewController: UICollectionViewDataSource {
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: featuredIdentifier.featuredIdentifier, for: indexPath) as? FeaturedCollectionViewCell else { return .init() }
             cell.updateUICircleCard(with: viewModel.featuredArguments)
+            return cell
+        case 2:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: timelineIdentifier.timelineIdentifier, for: indexPath) as? TimelineCollectionViewCell else { return .init() }
+            cell.updateUICircleCard(with: viewModel.timelineArguments)
             return cell
         default:
             return .init()
