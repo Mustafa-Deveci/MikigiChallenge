@@ -15,12 +15,8 @@ public struct TimelineCardArguments {
     let timelineDate: String?
 }
 
-public struct MentionArguments {
-    let mentionId: String?
+public struct MentionImageArguments {
     let mentionProfileImage: String?
-    let mentionFullname: String?
-    let mentionUserName: String?
-    let mentionisFollowing: Bool?
 }
 
 public enum timelineIdentifier {
@@ -33,7 +29,7 @@ class TimelineCollectionViewCell: UICollectionViewCell {
     weak var timelineInsideDelegate: TimelineInsideNavigateDelegate?
 
     private var timelineCardModel: [TimelineCardArguments] = []
-    private var mentionModel: [MentionArguments] = []
+    private var mentionModel: [MentionImageArguments] = []
     
       override func awakeFromNib() {
           super.awakeFromNib()
@@ -57,7 +53,7 @@ class TimelineCollectionViewCell: UICollectionViewCell {
           self.timelineCardModel = model
           reloadCollection()
       }
-    public func updateUIMentionCard(with model: [MentionArguments]) {
+    public func updateUIMentionCard(with model: [MentionImageArguments]) {
         self.mentionModel = model
         reloadCollection()
     }

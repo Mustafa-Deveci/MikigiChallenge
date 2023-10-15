@@ -109,6 +109,7 @@ extension HomeViewController: TimelineInsideNavigateDelegate {
     func navigateFollowListPage() {
             let vc = UIStoryboard(name: "HomePage", bundle: nil).instantiateViewController(withIdentifier: "FollowListViewController") as! FollowListViewController
             vc.navContoller = navigationController
+        vc.updateUIMentionsArg(with: viewModel.mentionsArguments)
         vc.modalPresentationStyle = .popover
         self.navigationController?.present(vc, animated: false)
        

@@ -27,7 +27,8 @@ protocol HomeViewModelInterface: AnyObject {
     var timelineModel: [Timeline] { get set }
     var timelineArguments: [TimelineCardArguments] { get set }
     var mentionsModel: [Mention]  { get set }
-    var mentionArguments: [MentionArguments] { get set }
+    var mentionArguments: [MentionImageArguments] { get set }
+    var mentionsArguments : [MentionArguments] {get set}
     var numberOfSections: Int { get }
 }
 
@@ -44,7 +45,8 @@ final class HomeViewModel {
     public var timelineModel: [Timeline] = []
     public var timelineArguments: [TimelineCardArguments] = []
     public var mentionsModel: [Mention] = []
-    public var mentionArguments: [MentionArguments] = []
+    public var mentionArguments: [MentionImageArguments] = []
+    public var mentionsArguments: [MentionArguments] = []
 
     public init(view: HomeVCInterface = HomeViewController()) {
         self.view = view
@@ -149,6 +151,7 @@ extension HomeViewModel: HomeViewModelInterface {
                 self.timelineModel = response.timeline
                 self.timelineArguments.removeAll()
                 self.mentionArguments.removeAll()
+                self.mentionsArguments.removeAll()
                 for timelineContent in self.timelineModel {
                     guard let timelineContentId = timelineContent.id,
                           let timelineImageUrl = timelineContent.imageURL,
@@ -168,8 +171,11 @@ extension HomeViewModel: HomeViewModelInterface {
                               let mentioUserName = mentionContent.userName,
                               let mentionIsFollowing = mentionContent.isFollowing
                         else { return }
-                        let arguments = MentionArguments(mentionId: mentionId, mentionProfileImage: mentionProfileImage, mentionFullname: mentionFullname, mentionUserName: mentioUserName, mentionisFollowing: mentionIsFollowing)
-                        mentionArguments.append(arguments)
+                        let Imagearguments = MentionImageArguments(mentionProfileImage: mentionProfileImage)
+                        let otherArguments = MentionArguments(mentionId: mentionId, mentionProfileImage: mentionProfileImage, mentionFullname: mentionFullname, mentionUserName: mentioUserName, mentionisFollowing: mentionIsFollowing)
+                        mentionArguments.append(Imagearguments)
+                        mentionsArguments.append(otherArguments)
+                        
                     }
                     self.mentionArguments = mentionArguments
                     self.view?.reloadCollection()

@@ -28,7 +28,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Featured" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vv5-ao-7kj">
-                        <rect key="frame" x="15" y="5" width="100" height="20"/>
+                        <rect key="frame" x="5" y="5" width="100" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Xjk-Cb-dmI"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="yRm-GG-ZV7"/>
@@ -73,7 +73,7 @@
                 <constraint firstAttribute="trailing" secondItem="7xv-92-ZBf" secondAttribute="trailing" id="NCa-te-hx6"/>
                 <constraint firstItem="vv5-ao-7kj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="Nwt-6o-Nh4"/>
                 <constraint firstAttribute="trailing" secondItem="bAg-Sg-o3t" secondAttribute="trailing" constant="30" id="YJ5-ov-sBe"/>
-                <constraint firstItem="vv5-ao-7kj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="hN3-O4-vyu"/>
+                <constraint firstItem="vv5-ao-7kj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="hN3-O4-vyu"/>
                 <constraint firstItem="7xv-92-ZBf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hOQ-Kw-O9k"/>
                 <constraint firstItem="dvZ-hc-u05" firstAttribute="leading" secondItem="bAg-Sg-o3t" secondAttribute="trailing" constant="5" id="pAu-e6-em0"/>
                 <constraint firstAttribute="trailing" secondItem="dvZ-hc-u05" secondAttribute="trailing" constant="15" id="ypd-L1-Mkm"/>

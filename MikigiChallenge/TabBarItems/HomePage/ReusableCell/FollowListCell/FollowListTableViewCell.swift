@@ -16,9 +16,12 @@ class FollowListTableViewCell: UITableViewCell {
     @IBOutlet weak var popupName: UILabel!
     @IBOutlet weak var popupUsername: UILabel!
     @IBOutlet weak var popupImage: UIImageView!
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    private var isFollow = false
+    static let identifier = "FollowListTableViewCell"
 
+    static func nib() -> UINib {
+        return UINib(nibName: identifier, bundle: nil)
     }
     
     @IBAction func followButton(_ sender: Any) {
