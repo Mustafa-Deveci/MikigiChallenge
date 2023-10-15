@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A60DB7D2ADBFF190085973A /* FollowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A60DB7C2ADBFF190085973A /* FollowListViewController.swift */; };
+		6A60DB812ADC2EE80085973A /* FollowListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A60DB7F2ADC2EE80085973A /* FollowListTableViewCell.swift */; };
+		6A60DB822ADC2EE80085973A /* FollowListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A60DB802ADC2EE80085973A /* FollowListTableViewCell.xib */; };
 		6AAC36452AD91D54005DED04 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 6AAC36442AD91D54005DED04 /* RxCocoa */; };
 		6AB7468B2AD9BED30089E5B7 /* FeaturedInsideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB746892AD9BED30089E5B7 /* FeaturedInsideCollectionViewCell.swift */; };
 		6AB7468C2AD9BED30089E5B7 /* FeaturedInsideCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AB7468A2AD9BED30089E5B7 /* FeaturedInsideCollectionViewCell.xib */; };
@@ -57,6 +60,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6A60DB7C2ADBFF190085973A /* FollowListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListViewController.swift; sourceTree = "<group>"; };
+		6A60DB7F2ADC2EE80085973A /* FollowListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListTableViewCell.swift; sourceTree = "<group>"; };
+		6A60DB802ADC2EE80085973A /* FollowListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowListTableViewCell.xib; sourceTree = "<group>"; };
 		6AB746892AD9BED30089E5B7 /* FeaturedInsideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedInsideCollectionViewCell.swift; sourceTree = "<group>"; };
 		6AB7468A2AD9BED30089E5B7 /* FeaturedInsideCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeaturedInsideCollectionViewCell.xib; sourceTree = "<group>"; };
 		6AE81B842ADA892400EE17B9 /* TimelineInsideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineInsideCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -118,6 +124,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A60DB7B2ADBFEF40085973A /* PopupAlert */ = {
+			isa = PBXGroup;
+			children = (
+				6A60DB7C2ADBFF190085973A /* FollowListViewController.swift */,
+			);
+			path = PopupAlert;
+			sourceTree = "<group>";
+		};
+		6A60DB7E2ADC2EB90085973A /* FollowListCell */ = {
+			isa = PBXGroup;
+			children = (
+				6A60DB7F2ADC2EE80085973A /* FollowListTableViewCell.swift */,
+				6A60DB802ADC2EE80085973A /* FollowListTableViewCell.xib */,
+			);
+			path = FollowListCell;
+			sourceTree = "<group>";
+		};
 		6AAC36432AD91D54005DED04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				6AF0E8442AD858610083A8AF /* Storyboards */,
+				6A60DB7B2ADBFEF40085973A /* PopupAlert */,
 				6AF0E8482AD858950083A8AF /* HomePageCore */,
 				6AF0E8492AD858A20083A8AF /* ReusableCell */,
 			);
@@ -258,6 +282,7 @@
 				6AF0E85F2AD876870083A8AF /* TopItemsCell */,
 				6AF0E84C2AD8597B0083A8AF /* FeaturedCell */,
 				6AE81B7F2ADA878000EE17B9 /* TimelineCell */,
+				6A60DB7E2ADC2EB90085973A /* FollowListCell */,
 			);
 			path = ReusableCell;
 			sourceTree = "<group>";
@@ -400,6 +425,7 @@
 				6AF0E8632AD876CB0083A8AF /* TopItemsCollectionViewCell.xib in Resources */,
 				6AF0E85A2AD86BD40083A8AF /* HomePage.storyboard in Resources */,
 				6AF0E8502AD85A000083A8AF /* FeaturedCollectionViewCell.xib in Resources */,
+				6A60DB822ADC2EE80085973A /* FollowListTableViewCell.xib in Resources */,
 				6AF0E80C2AD838430083A8AF /* LaunchScreen.storyboard in Resources */,
 				6AB7468C2AD9BED30089E5B7 /* FeaturedInsideCollectionViewCell.xib in Resources */,
 				6AE81B8B2ADAA1ED00EE17B9 /* TimelineCollectionViewCell.xib in Resources */,
@@ -436,9 +462,11 @@
 				6AF0E8622AD876CB0083A8AF /* TopItemsCollectionViewCell.swift in Sources */,
 				6AB7468B2AD9BED30089E5B7 /* FeaturedInsideCollectionViewCell.swift in Sources */,
 				6AF0E85C2AD871F10083A8AF /* HomeViewModel.swift in Sources */,
+				6A60DB7D2ADBFF190085973A /* FollowListViewController.swift in Sources */,
 				6AF0E8002AD838430083A8AF /* AppDelegate.swift in Sources */,
 				6AE81B8F2ADAC01100EE17B9 /* ApiError.swift in Sources */,
 				6AE81B862ADA892400EE17B9 /* TimelineInsideCollectionViewCell.swift in Sources */,
+				6A60DB812ADC2EE80085973A /* FollowListTableViewCell.swift in Sources */,
 				6AF0E85E2AD876440083A8AF /* HomeViewController.swift in Sources */,
 				6AF0E84F2AD85A000083A8AF /* FeaturedCollectionViewCell.swift in Sources */,
 				6AF0E8362AD83E220083A8AF /* ApiRouter.swift in Sources */,

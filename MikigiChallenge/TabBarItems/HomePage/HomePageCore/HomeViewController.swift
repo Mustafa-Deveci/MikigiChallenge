@@ -85,6 +85,8 @@ extension HomeViewController: UICollectionViewDataSource {
         case 2:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: timelineIdentifier.timelineIdentifier, for: indexPath) as? TimelineCollectionViewCell else { return .init() }
             cell.updateUICircleCard(with: viewModel.timelineArguments)
+            cell.updateUIMentionCard(with: viewModel.mentionArguments)
+            cell.timelineInsideDelegate = self
             return cell
         default:
             return .init()
@@ -101,5 +103,17 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         viewModel.sizeForItemAt(index: indexPath, collection: self.collectionView)
     }
 }
+
+// MARK: - TimelineInsideNavigateDelegate Methods
+extension HomeViewController: TimelineInsideNavigateDelegate {
+    func navigateFollowListPage() {
+            let vc = UIStoryboard(name: "HomePage", bundle: nil).instantiateViewController(withIdentifier: "FollowListViewController") as! FollowListViewController
+            vc.navContoller = navigationController
+        vc.modalPresentationStyle = .popover
+        self.navigationController?.present(vc, animated: false)
+       
+        }
+    }
+
 
 

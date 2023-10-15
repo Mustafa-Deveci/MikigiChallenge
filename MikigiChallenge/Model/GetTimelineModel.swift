@@ -12,7 +12,7 @@ struct GetTimelineModel: Codable {
     let timeline: [Timeline]
     
     enum CodingKeys: String, CodingKey {
-           case timeline = "timeline" // JSON anahtarı ile model anahtarını eşleştirin
+           case timeline = "timeline" 
        }
 }
 
@@ -34,4 +34,11 @@ struct Timeline: Codable {
 struct Mention: Codable {
     let id, profileImage, fullname, userName: String?
     let isFollowing: Bool?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case profileImage = "profileImage"
+        case fullname, userName
+        case isFollowing
+    }
 }

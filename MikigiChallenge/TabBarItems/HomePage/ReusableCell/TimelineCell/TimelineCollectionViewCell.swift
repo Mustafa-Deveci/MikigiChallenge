@@ -15,6 +15,14 @@ public struct TimelineCardArguments {
     let timelineDate: String?
 }
 
+public struct MentionArguments {
+    let mentionId: String?
+    let mentionProfileImage: String?
+    let mentionFullname: String?
+    let mentionUserName: String?
+    let mentionisFollowing: Bool?
+}
+
 public enum timelineIdentifier {
     static let timelineIdentifier = "TimelineCollectionViewCell"
 }
@@ -22,9 +30,11 @@ public enum timelineIdentifier {
 class TimelineCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    weak var timelineInsideDelegate: TimelineInsideNavigateDelegate?
+
     private var timelineCardModel: [TimelineCardArguments] = []
-      
+    private var mentionModel: [MentionArguments] = []
+    
       override func awakeFromNib() {
           super.awakeFromNib()
           setCollectionOwner()
@@ -47,6 +57,10 @@ class TimelineCollectionViewCell: UICollectionViewCell {
           self.timelineCardModel = model
           reloadCollection()
       }
+    public func updateUIMentionCard(with model: [MentionArguments]) {
+        self.mentionModel = model
+        reloadCollection()
+    }
 
   }
 
@@ -61,22 +75,14 @@ class TimelineCollectionViewCell: UICollectionViewCell {
           cell.timelineImageView.setImage(with: timelineCardModel.timelineImageView)
           cell.timelineTitle.text = timelineCardModel.timelineTitle
           cell.timelineCountryCount.text = ("\(timelineCardModel.timelineCountryCount ?? "")")
-          
-          let unixTimestampString = timelineCardModel.timelineDate ?? ""
-          if let unixTimestamp = Double(unixTimestampString) {
-              var unixTimestampSecond = unixTimestamp / 1000
-              let date = Date(timeIntervalSince1970: unixTimestampSecond)
-              let currentDate = Date()
-              let calendar = Calendar.current
-              let dateComponents = calendar.dateComponents([.day], from: date, to: currentDate)
-              if let days = dateComponents.day {
-                  cell.timelineDate.text = ("\(days) Days Ago")
-              } else {
-                  print("Error")
-              }
-          } else {
-              print("Error")
-          }
+          if let daysAgo = convertUnixTimestampToDaysAgo(timelineCardModel.timelineDate ?? "") {
+                  cell.timelineDate.text = daysAgo
+        }
+          let mentionCardModel = mentionModel[indexPath.row]
+          cell.followImageOne.setImage(with: mentionCardModel.mentionProfileImage)
+          cell.followImageTwo.setImage(with: mentionCardModel.mentionProfileImage)
+          cell.followImageThree.setImage(with: mentionCardModel.mentionProfileImage)
+          cell.delegate = timelineInsideDelegate
           return cell
       }
   }
@@ -94,8 +100,23 @@ class TimelineCollectionViewCell: UICollectionViewCell {
       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
           return .init(top: 0, left: 0, bottom: 0, right: 0)
       }
-      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-          print("Clicked \(indexPath.item)")
-      }
+
   }
+
+extension TimelineCollectionViewCell {
+    func convertUnixTimestampToDaysAgo(_ unixTimestampString: String) -> String? {
+        if let unixTimestamp = Double(unixTimestampString) {
+            let unixTimestampSecond = unixTimestamp / 1000
+            let date = Date(timeIntervalSince1970: unixTimestampSecond)
+            let currentDate = Date()
+            let calendar = Calendar.current
+            let dateComponents = calendar.dateComponents([.day], from: date, to: currentDate)
+            if let days = dateComponents.day {
+                return "\(days) Days Ago"
+            }
+        }
+        return nil
+    }
+}
+
 

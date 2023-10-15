@@ -13,7 +13,6 @@ import UIKit
 protocol HomeViewModelInterface: AnyObject {
     static func getFeatured() -> Observable<GetFeaturedModel>
     static func getTimeline(page: Int) -> Observable<GetTimelineModel>
-    //func viewDidLoad()
     func FeaturedRequestData()
     func TimelineRequestData(page: Int)
     func getFeaturedData()
@@ -27,6 +26,8 @@ protocol HomeViewModelInterface: AnyObject {
     var featuredArguments: [FeaturedCardArguments] { get set }
     var timelineModel: [Timeline] { get set }
     var timelineArguments: [TimelineCardArguments] { get set }
+    var mentionsModel: [Mention]  { get set }
+    var mentionArguments: [MentionArguments] { get set }
     var numberOfSections: Int { get }
 }
 
@@ -42,7 +43,9 @@ final class HomeViewModel {
     public var homepageTimelineList: PublishSubject<GetTimelineModel> = PublishSubject()
     public var timelineModel: [Timeline] = []
     public var timelineArguments: [TimelineCardArguments] = []
-    
+    public var mentionsModel: [Mention] = []
+    public var mentionArguments: [MentionArguments] = []
+
     public init(view: HomeVCInterface = HomeViewController()) {
         self.view = view
     }
@@ -145,6 +148,7 @@ extension HomeViewModel: HomeViewModelInterface {
             if let response = event.element {
                 self.timelineModel = response.timeline
                 self.timelineArguments.removeAll()
+                self.mentionArguments.removeAll()
                 for timelineContent in self.timelineModel {
                     guard let timelineContentId = timelineContent.id,
                           let timelineImageUrl = timelineContent.imageURL,
@@ -155,10 +159,21 @@ extension HomeViewModel: HomeViewModelInterface {
                     let timelineCountryCount = ("\(timelineCountryStruct) COUNTRIES")
                     let arguments = TimelineCardArguments(timelineId: timelineContentId, timelineImageView: timelineImageUrl, timelineTitle: timelineTitle, timelineCountryCount: timelineCountryCount, timelineDate: timelineDate)
                     timelineArguments.append(arguments)
-
+                    
+                    self.mentionsModel = timelineContent.mentions
+                    for mentionContent in self.mentionsModel {
+                        guard let mentionId = mentionContent.id,
+                              let mentionProfileImage = mentionContent.profileImage,
+                              let mentionFullname = mentionContent.fullname,
+                              let mentioUserName = mentionContent.userName,
+                              let mentionIsFollowing = mentionContent.isFollowing
+                        else { return }
+                        let arguments = MentionArguments(mentionId: mentionId, mentionProfileImage: mentionProfileImage, mentionFullname: mentionFullname, mentionUserName: mentioUserName, mentionisFollowing: mentionIsFollowing)
+                        mentionArguments.append(arguments)
+                    }
+                    self.mentionArguments = mentionArguments
+                    self.view?.reloadCollection()
                 }
-                self.timelineArguments = timelineArguments
-                self.view?.reloadCollection()
 
             }
 
