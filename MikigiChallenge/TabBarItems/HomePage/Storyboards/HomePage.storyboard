@@ -12,7 +12,7 @@
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="HomeViewController" customModule="MikigiChallenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gii-aF-XgM">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="gii-aF-XgM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -64,7 +64,7 @@
                         <viewLayoutGuide key="safeArea" id="enK-rh-yb5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="magnifyingglass" catalog="system" id="31I-O5-iiw"/>
+                    <tabBarItem key="tabBarItem" title="" image="ic_search" id="31I-O5-iiw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dfS-k7-AIw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -80,7 +80,7 @@
                         <viewLayoutGuide key="safeArea" id="wZy-Tr-2UH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="folder" catalog="system" id="hpA-3I-rjX"/>
+                    <tabBarItem key="tabBarItem" title="" image="ic_hadnback" id="hpA-3I-rjX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pRe-xf-rlk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -96,7 +96,7 @@
                         <viewLayoutGuide key="safeArea" id="dr4-Oe-vHX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="bell" catalog="system" id="VW5-lR-gN3"/>
+                    <tabBarItem key="tabBarItem" title="" image="ic_notification" id="VW5-lR-gN3"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m8Y-35-6sj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -112,7 +112,7 @@
                         <viewLayoutGuide key="safeArea" id="dpe-ZM-HlN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="aVc-ek-jbh"/>
+                    <tabBarItem key="tabBarItem" title="" image="ic_profile" id="aVc-ek-jbh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r8O-i3-DY0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -122,7 +122,7 @@
         <scene sceneID="Xjk-tf-jW6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ldg-I9-kSx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="homekit" catalog="system" id="oFl-ef-vq9"/>
+                    <tabBarItem key="tabBarItem" title="" image="ic_timeline" id="oFl-ef-vq9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4RG-zI-G3p">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -139,11 +139,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bell" catalog="system" width="125" height="128"/>
-        <image name="folder" catalog="system" width="128" height="96"/>
-        <image name="homekit" catalog="system" width="128" height="104"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="person" catalog="system" width="128" height="121"/>
+        <image name="ic_hadnback" width="20" height="20"/>
+        <image name="ic_notification" width="20" height="20"/>
+        <image name="ic_profile" width="24" height="24"/>
+        <image name="ic_search" width="20" height="20"/>
+        <image name="ic_timeline" width="20" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

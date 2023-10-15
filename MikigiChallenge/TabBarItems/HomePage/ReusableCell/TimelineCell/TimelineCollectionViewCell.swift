@@ -11,7 +11,7 @@ public struct TimelineCardArguments {
     let timelineId: String?
     let timelineImageView: String?
     let timelineTitle: String?
-    let timelineCountryCount: Int?
+    let timelineCountryCount: String?
     let timelineDate: String?
 }
 
@@ -60,8 +60,23 @@ class TimelineCollectionViewCell: UICollectionViewCell {
           let timelineCardModel = timelineCardModel[indexPath.item]
           cell.timelineImageView.setImage(with: timelineCardModel.timelineImageView)
           cell.timelineTitle.text = timelineCardModel.timelineTitle
-          cell.timelineCountryCount.text = ("\(timelineCardModel.timelineCountryCount ?? .zero)")
-          cell.timelineDate.text = timelineCardModel.timelineDate
+          cell.timelineCountryCount.text = ("\(timelineCardModel.timelineCountryCount ?? "")")
+          
+          let unixTimestampString = timelineCardModel.timelineDate ?? ""
+          if let unixTimestamp = Double(unixTimestampString) {
+              var unixTimestampSecond = unixTimestamp / 1000
+              let date = Date(timeIntervalSince1970: unixTimestampSecond)
+              let currentDate = Date()
+              let calendar = Calendar.current
+              let dateComponents = calendar.dateComponents([.day], from: date, to: currentDate)
+              if let days = dateComponents.day {
+                  cell.timelineDate.text = ("\(days) Days Ago")
+              } else {
+                  print("Error")
+              }
+          } else {
+              print("Error")
+          }
           return cell
       }
   }
@@ -74,17 +89,10 @@ class TimelineCollectionViewCell: UICollectionViewCell {
           return .init(12)
       }
       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-          return .init(12)
+          return .init(0)
       }
       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-          let leftInset = calculateLeftInsetForCollectionView()
-          return .init(top: 0, left: leftInset, bottom: 0, right: 20)
-      }
-      private func calculateLeftInsetForCollectionView() -> CGFloat {
-          let collectionViewWidth = collectionView.bounds.width
-          let totalCellWidth = 100 * CGFloat(5)
-          let leftInset = (collectionViewWidth - totalCellWidth) / 2
-          return max(leftInset, 0)
+          return .init(top: 0, left: 0, bottom: 0, right: 0)
       }
       func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
           print("Clicked \(indexPath.item)")

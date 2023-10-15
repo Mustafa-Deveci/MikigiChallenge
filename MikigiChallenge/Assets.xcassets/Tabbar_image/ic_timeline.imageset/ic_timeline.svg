@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+    <defs>
+        <filter id="hhr3poi19a" width="127.1%" height="230%" x="-13.5%" y="-65%" filterUnits="objectBoundingBox">
+            <feOffset in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="10"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <path id="tmkaxr0kkb" d="M17.778 2.222v2.222h-4.445V2.222h4.445zm-11.111 0V8.89H2.222V2.222h4.445zm11.11 8.89v6.666h-4.444V11.11h4.445zm-11.11 4.444v2.222H2.222v-2.222h4.445zM20 0h-8.889v6.667H20V0zM8.889 0H0v11.111h8.889V0zM20 8.889h-8.889V20H20V8.889zM8.889 13.333H0V20h8.889v-6.667z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g filter="url(#hhr3poi19a)" transform="translate(-60 -584) translate(36 564)">
+                <g transform="translate(24 20)">
+                    <use fill="#000" xlink:href="#tmkaxr0kkb"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

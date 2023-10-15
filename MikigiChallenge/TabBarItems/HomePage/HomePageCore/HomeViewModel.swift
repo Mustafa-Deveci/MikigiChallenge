@@ -67,11 +67,11 @@ extension HomeViewModel: HomeViewModelInterface {
     func sizeForItemAt(index: IndexPath, collection: UICollectionView) -> CGSize {
         switch index.section {
         case 0:
-            return .init(width: collection.frame.width, height: 80)
+            return .init(width: collection.frame.width, height: 60)
         case 1:
-            return .init(width: collection.frame.width, height: 350)
+            return .init(width: collection.frame.width - 40, height: 300)
         case 2:
-            return .init(width: collection.frame.width, height: 300)
+            return .init(width: collection.frame.width - 40, height: 1100)
         default:
             return .init()
         }
@@ -149,9 +149,10 @@ extension HomeViewModel: HomeViewModelInterface {
                     guard let timelineContentId = timelineContent.id,
                           let timelineImageUrl = timelineContent.imageURL,
                           let timelineTitle = timelineContent.title,
-                          let timelineCountryCount = timelineContent.countryCount,
+                          let timelineCountryStruct = timelineContent.countryCount,
                           let timelineDate = timelineContent.date
                     else { return }
+                    let timelineCountryCount = ("\(timelineCountryStruct) COUNTRIES")
                     let arguments = TimelineCardArguments(timelineId: timelineContentId, timelineImageView: timelineImageUrl, timelineTitle: timelineTitle, timelineCountryCount: timelineCountryCount, timelineDate: timelineDate)
                     timelineArguments.append(arguments)
 

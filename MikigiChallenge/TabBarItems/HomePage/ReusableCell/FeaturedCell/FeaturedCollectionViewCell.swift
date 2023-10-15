@@ -68,7 +68,7 @@ extension FeaturedCollectionViewCell: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension FeaturedCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: 150, height: 300)
+        return .init(width: 150, height: 230)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return .init(12)
