@@ -52,15 +52,13 @@ final class HomeViewModel {
 // MARK: - HomeViewModelInterface
 extension HomeViewModel: HomeViewModelInterface {
     var numberOfSections: Int {
-        return 3
+        return 2
     }
     func numberOfItemsInSection(section: Int) -> Int {
         switch section {
         case 0:
             return 1
         case 1:
-            return 1
-        case 2:
             return 1
         default:
             return 1
@@ -69,10 +67,8 @@ extension HomeViewModel: HomeViewModelInterface {
     func sizeForItemAt(index: IndexPath, collection: UICollectionView) -> CGSize {
         switch index.section {
         case 0:
-            return .init(width: collection.frame.width, height: 60)
-        case 1:
             return .init(width: collection.frame.width - 40, height: 300)
-        case 2:
+        case 1:
             return .init(width: collection.frame.width - 40, height: 1100)
         default:
             return .init()

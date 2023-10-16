@@ -25,16 +25,16 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I23-Kg-eQ9">
-                        <rect key="frame" x="20" y="244.66666666666666" width="90" height="20.999999999999972"/>
+                        <rect key="frame" x="17" y="244.66666666666666" width="90" height="20.999999999999972"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="dOs-Er-B5y"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                         <color key="textColor" red="0.98823529480000005" green="0.97647058959999999" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dey-Jx-p7M">
-                        <rect key="frame" x="20" y="271.66666666666669" width="90" height="20.333333333333314"/>
+                        <rect key="frame" x="17" y="271.66666666666669" width="90" height="20.333333333333314"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="yaP-Z7-YAg"/>
                         </constraints>
@@ -75,7 +75,7 @@
                 <constraint firstItem="mp7-BY-Ozz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ab6-95-iHJ"/>
                 <constraint firstItem="mp7-BY-Ozz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="htU-aL-Izw"/>
                 <constraint firstAttribute="bottom" secondItem="mp7-BY-Ozz" secondAttribute="bottom" id="i3A-Fm-wOr"/>
-                <constraint firstItem="I23-Kg-eQ9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="oxU-4b-OBF"/>
+                <constraint firstItem="I23-Kg-eQ9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="17" id="oxU-4b-OBF"/>
                 <constraint firstAttribute="trailing" secondItem="mp7-BY-Ozz" secondAttribute="trailing" id="pX8-i6-SHj"/>
                 <constraint firstItem="e59-A3-gf5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="tWr-F6-oFb"/>
                 <constraint firstAttribute="trailing" secondItem="qZt-JQ-mG3" secondAttribute="trailing" constant="15" id="vOL-p3-O0e"/>

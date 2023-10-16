@@ -12,21 +12,34 @@
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="HomeViewController" customModule="MikigiChallenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="gii-aF-XgM">
+                    <view key="view" contentMode="scaleToFill" id="pPh-zl-h2o">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dto-CZ-qyq">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Drw-pk-PIA">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Afp-q6-EmK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="o8s-EJ-e4L">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="E4h-e2-aXT"/>
+                        <constraints>
+                            <constraint firstItem="dto-CZ-qyq" firstAttribute="top" secondItem="Afp-q6-EmK" secondAttribute="top" id="Kef-D3-bna"/>
+                            <constraint firstItem="dto-CZ-qyq" firstAttribute="leading" secondItem="Afp-q6-EmK" secondAttribute="leading" id="SnG-wZ-ZG0"/>
+                            <constraint firstItem="Afp-q6-EmK" firstAttribute="bottom" secondItem="dto-CZ-qyq" secondAttribute="bottom" id="Tve-o4-Jbk"/>
+                            <constraint firstItem="Afp-q6-EmK" firstAttribute="trailing" secondItem="dto-CZ-qyq" secondAttribute="trailing" id="bUF-RE-GJs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="crI-nE-ZHk"/>
                     <connections>
-                        <outlet property="collectionView" destination="gii-aF-XgM" id="995-aQ-9BC"/>
+                        <outlet property="collectionView" destination="dto-CZ-qyq" id="vgC-9D-0Gj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

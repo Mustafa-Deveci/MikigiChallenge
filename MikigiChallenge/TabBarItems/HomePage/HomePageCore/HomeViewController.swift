@@ -37,7 +37,23 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setCollectionOwner()
         setCollectionRegister()
+        setBoldTitle()
     }
+    
+    func setBoldTitle() {
+        let attributedTitle = NSMutableAttributedString(string: "DEMO ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)])
+        let boldFont = UIFont.boldSystemFont(ofSize: 17)
+        let boldTitle = NSAttributedString(string: "FEED", attributes: [NSAttributedString.Key.font: boldFont])
+
+        attributedTitle.append(boldTitle)
+
+        navigationItem.title = ""
+        let titleLabel = UILabel()
+        titleLabel.attributedText = attributedTitle
+        titleLabel.sizeToFit()
+        navigationItem.titleView = titleLabel
+    }
+    
 
 }
 
@@ -54,7 +70,6 @@ extension HomeViewController: HomeVCInterface {
     }
 
     func setCollectionRegister() {
-        collectionView.register(UINib(nibName: topItemsCollectionIdentifier.topItems, bundle: nil), forCellWithReuseIdentifier: topItemsCollectionIdentifier.topItems)
         collectionView.register(UINib(nibName: featuredIdentifier.featuredIdentifier, bundle: nil), forCellWithReuseIdentifier: featuredIdentifier.featuredIdentifier)
         collectionView.register(UINib(nibName: timelineIdentifier.timelineIdentifier, bundle: nil), forCellWithReuseIdentifier: timelineIdentifier.timelineIdentifier)
        
@@ -72,13 +87,10 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: topItemsCollectionIdentifier.topItems, for: indexPath) as? TopItemsCollectionViewCell else { return .init() }
-            return cell
-        case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: featuredIdentifier.featuredIdentifier, for: indexPath) as? FeaturedCollectionViewCell else { return .init() }
             cell.updateUICircleCard(with: viewModel.featuredArguments)
             return cell
-        case 2:
+        case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: timelineIdentifier.timelineIdentifier, for: indexPath) as? TimelineCollectionViewCell else { return .init() }
             cell.updateUICircleCard(with: viewModel.timelineArguments)
             cell.updateUIMentionCard(with: viewModel.mentionArguments)
