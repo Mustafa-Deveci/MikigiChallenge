@@ -80,6 +80,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="followButton" destination="cjb-FN-lLw" id="Qac-Gb-PD4"/>
                 <outlet property="popupImage" destination="FaG-Hl-5m3" id="ZvD-vb-oAk"/>
                 <outlet property="popupName" destination="HBW-DO-VY7" id="ofJ-xx-6dZ"/>
                 <outlet property="popupUsername" destination="fTE-eL-dQu" id="biL-fG-cDe"/>

@@ -19,7 +19,6 @@ protocol HomeVCInterface: AnyObject {
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var collectionView: UICollectionView!
     private lazy var viewModel: HomeViewModelInterface = HomeViewModel(view: self)
     let disposeBag = DisposeBag()
@@ -44,20 +43,17 @@ class HomeViewController: UIViewController {
 
 // MARK: - HomeVCInterface Methods
 extension HomeViewController: HomeVCInterface {
-    // reload main thread
     func reloadCollection() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
-    // delegate authority
     func setCollectionOwner() {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
 
     func setCollectionRegister() {
-        // Reusable cell
         collectionView.register(UINib(nibName: topItemsCollectionIdentifier.topItems, bundle: nil), forCellWithReuseIdentifier: topItemsCollectionIdentifier.topItems)
         collectionView.register(UINib(nibName: featuredIdentifier.featuredIdentifier, bundle: nil), forCellWithReuseIdentifier: featuredIdentifier.featuredIdentifier)
         collectionView.register(UINib(nibName: timelineIdentifier.timelineIdentifier, bundle: nil), forCellWithReuseIdentifier: timelineIdentifier.timelineIdentifier)
@@ -106,15 +102,16 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - TimelineInsideNavigateDelegate Methods
 extension HomeViewController: TimelineInsideNavigateDelegate {
-    func navigateFollowListPage() {
-            let vc = UIStoryboard(name: "HomePage", bundle: nil).instantiateViewController(withIdentifier: "FollowListViewController") as! FollowListViewController
-            vc.navContoller = navigationController
-        vc.updateUIMentionsArg(with: viewModel.mentionsArguments)
-        vc.modalPresentationStyle = .popover
-        self.navigationController?.present(vc, animated: false)
-       
-        }
+    func navigateFollowListPage(at indexPath: Int) {
+        let vc = UIStoryboard(name: "HomePage", bundle: nil).instantiateViewController(withIdentifier: "FollowListViewController") as! FollowListViewController
+        vc.navContoller = navigationController
+        vc.indeks = indexPath
+    vc.updateUIMentionsArg(with: viewModel.mentionsArguments)
+    vc.modalPresentationStyle = .overFullScreen
+    self.navigationController?.present(vc, animated: false)
     }
+    
+}
 
 
 

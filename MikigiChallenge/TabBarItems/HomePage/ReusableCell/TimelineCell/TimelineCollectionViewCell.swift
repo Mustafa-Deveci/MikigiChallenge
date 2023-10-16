@@ -68,18 +68,45 @@ class TimelineCollectionViewCell: UICollectionViewCell {
       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: timelineInsideIdentifier.timelineInsideIdentifier, for: indexPath) as! TimelineInsideCollectionViewCell
           let timelineCardModel = timelineCardModel[indexPath.item]
+          cell.indeks = indexPath.item
           cell.timelineImageView.setImage(with: timelineCardModel.timelineImageView)
           cell.timelineTitle.text = timelineCardModel.timelineTitle
           cell.timelineCountryCount.text = ("\(timelineCardModel.timelineCountryCount ?? "")")
           if let daysAgo = convertUnixTimestampToDaysAgo(timelineCardModel.timelineDate ?? "") {
-                  cell.timelineDate.text = daysAgo
-        }
-          let mentionCardModel = mentionModel[indexPath.row]
-          cell.followImageOne.setImage(with: mentionCardModel.mentionProfileImage)
-          cell.followImageTwo.setImage(with: mentionCardModel.mentionProfileImage)
-          cell.followImageThree.setImage(with: mentionCardModel.mentionProfileImage)
+              cell.timelineDate.text = daysAgo
+          }
+            switch indexPath.item {
+            case 0:
+                  let mentionCard1Model = mentionModel[0]
+                  let mentionCard2Model = mentionModel[1]
+                  let mentionCard3Model = mentionModel[2]
+                  cell.followImageOne.setImage(with: mentionCard1Model.mentionProfileImage)
+                  cell.followImageTwo.setImage(with: mentionCard2Model.mentionProfileImage)
+                  cell.followImageThree.setImage(with: mentionCard3Model.mentionProfileImage)
+            case 1:
+                let mentionCard1Model = mentionModel[3]
+                let mentionCard2Model = mentionModel[4]
+                cell.followImageOne.setImage(with: mentionCard1Model.mentionProfileImage)
+                cell.followImageTwo.setImage(with: mentionCard2Model.mentionProfileImage)
+            case 2:
+                let mentionCard1Model = mentionModel[5]
+                cell.followImageOne.setImage(with: mentionCard1Model.mentionProfileImage)
+            case 3:
+                cell.followInfo.isHidden = true
+                cell.plusIcon.isHidden = true
+            case 4:
+                let mentionCard1Model = mentionModel[6]
+                let mentionCard2Model = mentionModel[7]
+                let mentionCard3Model = mentionModel[8]
+                cell.followImageOne.setImage(with: mentionCard1Model.mentionProfileImage)
+                cell.followImageTwo.setImage(with: mentionCard2Model.mentionProfileImage)
+                cell.followImageThree.setImage(with: mentionCard3Model.mentionProfileImage)
+          default:
+              break
+          }
           cell.delegate = timelineInsideDelegate
           return cell
+          
       }
   }
   // MARK: - UICollectionViewDelegateFlowLayout
@@ -95,6 +122,9 @@ class TimelineCollectionViewCell: UICollectionViewCell {
       }
       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
           return .init(top: 0, left: 0, bottom: 0, right: 0)
+      }
+      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+          print("Clicked \(indexPath.item)")
       }
 
   }

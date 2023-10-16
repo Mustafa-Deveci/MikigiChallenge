@@ -35,12 +35,9 @@ protocol HomeViewModelInterface: AnyObject {
 final class HomeViewModel {
     private weak var view: HomeVCInterface?
     private var disposeBag = DisposeBag()
-    
     public var homepageFeaturedList: PublishSubject<GetFeaturedModel> = PublishSubject()
-    
     public var featuredModel: [Featured] = []
     public var featuredArguments: [FeaturedCardArguments] = []
-    
     public var homepageTimelineList: PublishSubject<GetTimelineModel> = PublishSubject()
     public var timelineModel: [Timeline] = []
     public var timelineArguments: [TimelineCardArguments] = []
@@ -120,7 +117,6 @@ extension HomeViewModel: HomeViewModelInterface {
             })
             .disposed(by: disposeBag)
     }
-    
     func getFeaturedData() {
         self.homepageFeaturedList.observe(on: MainScheduler.asyncInstance).subscribe { [weak self] event in
             guard let self = self else { return }
@@ -175,11 +171,12 @@ extension HomeViewModel: HomeViewModelInterface {
                         let otherArguments = MentionArguments(mentionId: mentionId, mentionProfileImage: mentionProfileImage, mentionFullname: mentionFullname, mentionUserName: mentioUserName, mentionisFollowing: mentionIsFollowing)
                         mentionArguments.append(Imagearguments)
                         mentionsArguments.append(otherArguments)
-                        
                     }
-                    self.mentionArguments = mentionArguments
-                    self.view?.reloadCollection()
                 }
+                self.featuredArguments = featuredArguments
+                self.mentionsArguments = mentionsArguments
+                self.mentionArguments = mentionArguments
+                self.view?.reloadCollection()
 
             }
 

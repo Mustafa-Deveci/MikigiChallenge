@@ -20,9 +20,7 @@ class TopItemsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         formatLabel()
         configureStraightLine()
-        
     }
-    
     func formatLabel() {
             let labelText = "DEMO FEED"
             let attributedText = NSMutableAttributedString(string: labelText)
@@ -35,10 +33,8 @@ class TopItemsCollectionViewCell: UICollectionViewCell {
     
     func configureStraightLine() {
         straightLine.backgroundColor = UIColor(red: 147/255, green: 151/255, blue: 151/255, alpha: 1.0)
-
            straightLine.translatesAutoresizingMaskIntoConstraints = false
            contentView.addSubview(straightLine)
-
            NSLayoutConstraint.activate([
                straightLine.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
                straightLine.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),

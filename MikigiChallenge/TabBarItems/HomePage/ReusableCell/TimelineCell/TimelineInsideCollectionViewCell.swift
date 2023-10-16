@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TimelineInsideNavigateDelegate: AnyObject {
-    func navigateFollowListPage()
+    func navigateFollowListPage(at indexPath: Int)
 }
 
 public enum timelineInsideIdentifier {
@@ -27,8 +27,9 @@ class TimelineInsideCollectionViewCell: UICollectionViewCell, UIGestureRecognize
     @IBOutlet weak var followImageOne: UIImageView!
     @IBOutlet weak var followInfo: UIImageView!
     
+    @IBOutlet weak var plusIcon: UIImageView!
     weak var delegate: TimelineInsideNavigateDelegate?
-
+    var indeks: Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,8 +62,7 @@ class TimelineInsideCollectionViewCell: UICollectionViewCell, UIGestureRecognize
     }
     
     @objc func viewFollowInfo(sender: UITapGestureRecognizer) {
-        self.delegate?.navigateFollowListPage()
-
+        self.delegate?.navigateFollowListPage(at: indeks ?? .zero)
     }
     
 }

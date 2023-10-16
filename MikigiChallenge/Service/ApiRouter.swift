@@ -64,7 +64,7 @@ enum ApiRouter: URLRequestConvertible {
         case .getFeatured:
             return nil
         case .getTimeline(let page):
-            return ["page": page]  // "page" sorgu parametresini ekledik
+            return ["page": page] 
         default:
             return nil
         }

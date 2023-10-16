@@ -20,7 +20,7 @@ class ApiClient {
                     observer.onNext(value)
                     observer.onCompleted()
                 case .failure(let error):
-                    print("Hata Mesajı: \(error.localizedDescription)") // Hatanın ayrıntılı açıklamasını yazdır
+                    print("Hata Mesajı: \(error.localizedDescription)")
                     observer.onError(error)
                 }
             }
